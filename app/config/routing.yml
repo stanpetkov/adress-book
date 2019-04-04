@@ -1,0 +1,4 @@
+event:
+    resource: "@EventBundle/Controller/"
+    type:     annotation
+    prefix:   /

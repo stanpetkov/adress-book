@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme edit_form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}AB - Edit user{% endblock %}
+
+{% block body %}
+    <h1 class="m-b-md">Contact edit</h1>
+
+    {{ form_start(edit_form) }}
+
+    <div class="row bg-form-color">
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(edit_form.firstname, { 'label' : 'Firstname'}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(edit_form.lastname, { 'label' : 'Lastname'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(edit_form.street, { 'label' : 'Street'}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(edit_form.zip, { 'label' : 'Zip'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(edit_form.city, { 'label' : 'City'}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(edit_form.country, { 'label' : 'Country'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(edit_form.phonenumber, { 'label' : 'Phonenumber'}) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(edit_form.birthday, { 'label' : 'Birthday'}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(edit_form.email, { 'label' : 'Email'}) }}
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-3">
+                    <img src="{{ asset('uploads/pictures/' ~ event.picture) }}" style="width:100px;">
+                </div>
+                <div class="col-md-3">
+                    {{ form_row(edit_form.picture, { 'label' : 'Profile Picture'}) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            {{ form_widget(edit_form, {'attr': {'onclick': 'return confirm("Edit contact?")'}})  }}
+                <button class="btn btn-success nav-link edit-button" type="submit">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    <span><strong>Edit</strong></span>
+                </button>
+            {{ form_end(edit_form) }}
+        </div>
+        <div class="col-md-2">
+            <a href="{{ path('event_index') }}" class="btn btn-primary nav-link edit-button">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <span><strong>Back to the list</strong></span>
+            </a>
+        </div>
+        <div class="col-md-1">
+            {{ form_start(delete_form, {'attr': {'onclick': 'return confirm("Delete contact?")'}})  }}
+                <button class="btn btn-danger nav-link edit-button" type="submit">
+                    <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                    <span><strong>Delete</strong></span>
+                </button>
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" charset="utf8" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+
+        <script type="text/javascript">
+            $(function() {
+                $('#eventbundle_event_birthday').datepicker();
+            });
+
+            $("input").on("click", function() {
+                $(this).val("");
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

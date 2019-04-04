@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3 style="background-color: #aacd4e; color: #ffffff; padding: 10px;">Contact successfully edited/created !</h3>
+
+    <table class="table table-striped m-b-md">
+        <tbody>
+        <tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ event.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ event.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ event.street }}</td>
+            </tr>
+            <tr>
+                <th>Zip</th>
+                <td>{{ event.zip }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ event.city }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ event.country }}</td>
+            </tr>
+            <tr>
+                <th>Phonenumber</th>
+                <td>{{ event.phonenumber }}</td>
+            </tr>
+            <tr>
+                <th>Birthday</th>
+                <td>{% if event.birthday %}{{ event.birthday|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ event.email }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td><img src="{{ asset('uploads/pictures/' ~ event.picture) }}" style="width:100px;"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row" style="margin-bottom: 50px;">
+
+        <div class="col-md-2">
+            <a href="{{ path('event_index') }}" class="btn btn-primary nav-link edit-button">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                <span><strong>Back to the list</strong></span>
+            </a>
+        </div>
+
+        <div class="col-md-1">
+            <a href="{{ path('event_edit', { 'id': event.id }) }}" class="btn btn-primary nav-link">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                <span><strong>Edit</strong></span>
+            </a>
+        </div>
+
+        <div class="col-md-1">
+
+            {{ form_start(delete_form) }}
+
+            <button class="btn btn-danger nav-link edit-button" type="submit">
+                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                <span><strong>Delete</strong></span>
+            </button>
+
+            {{ form_end(delete_form) }}
+        </div>
+
+    </div>
+
+{% endblock %}

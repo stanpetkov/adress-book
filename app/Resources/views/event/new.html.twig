@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Create new user{% endblock %}
+
+{% block body %}
+
+    <h1 class="m-b-md">Create user</h1>
+
+    {{ form_start(form) }}
+        <div class="row bg-form-color">
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.firstname, { 'label' : 'Firstname'}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.lastname, { 'label' : 'Lastname'}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.street, { 'label' : 'Street'}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.zip, { 'label' : 'Zip'}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.city, { 'label' : 'City'}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.country, { 'label' : 'Country'}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.phonenumber, { 'label' : 'Phonenumber'}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.birthday, { 'label' : 'Birthday'}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.email, { 'label' : 'Email'}) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.picture, { 'label' : 'Picture (max. 2MB)'}) }}
+                </div>
+            </div>
+        </div>
+    <ul>
+    <li>
+        {{ form_widget(form) }}
+            <button class="btn btn-success nav-link edit-button" type="submit">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                <span><strong>Create</strong></span>
+            </button>
+        {{ form_widget(form) }}
+    </li>
+        <li>
+            <a href="{{ path('event_index') }}" class="btn btn-primary nav-link edit-button">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                <span><strong>Back to the list</strong></span>
+            </a>
+        </li>
+    </ul>
+    {{ form_end(form) }}
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" charset="utf8" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+
+        <script type="text/javascript">
+
+            $(function () {
+                $("#eventbundle_event_birthday").datepicker({
+                    autoclose: true,
+                    todayHighlight: true
+                }).datepicker('update', new Date());
+            });
+
+            $("input").on("click", function() {
+                $(this).val("");
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}
+
+

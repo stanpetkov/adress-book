@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="m-b-md">All Users</h1>
+
+    <table class="table table-striped m-b-md">
+        <thead>
+        <tr>
+            <th>Profile image</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Street</th>
+            <th>Zip</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Phonenumber</th>
+            <th>Birthday</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tbody>
+        {% for event in events %}
+            <tr>
+                <td><img src="{{ asset('uploads/pictures/' ~ event.picture) }}" style="width:100px;"></td>
+                <td>{{ event.firstname }}</td>
+                <td>{{ event.lastname }}</td>
+                <td>{{ event.street }}</td>
+                <td>{{ event.zip }}</td>
+                <td>{{ event.city }}</td>
+                <td>{{ event.country }}</td>
+                <td>{{ event.phonenumber }}</td>
+                <td>{% if event.birthday %}{{ event.birthday|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ event.email }}</td>
+                <td></td>
+                <td>
+                    <ul>
+                        <li class="custom">
+                            <a href="{{ path('event_edit', { 'id': event.id }) }}" class="btn btn-primary nav-link">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                <span><strong>Edit</strong></span>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        <ul class="m-b-md">
+            <li>
+                <a href="{{ path('event_new') }}" class="btn btn-primary nav-link">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span><strong>Add contact</strong></span>
+                </a>
+            </li>
+        </ul>
+        </tbody>
+
+    </table>
+
+{% endblock %}
+
+
